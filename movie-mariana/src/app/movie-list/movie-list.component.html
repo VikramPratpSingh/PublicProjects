@@ -1,0 +1,50 @@
+<section>
+    <div class="header-wpr">
+        <div>The Movies@Mariana</div>
+        <div>Profile</div>
+    </div>
+</section>
+<section>
+    <div class="list-header-wpr">
+        <div class="list-header-inner-wpr">
+            <div>
+                <mat-form-field>
+                    <input matInput [(ngModel)]="searchText" placeholder="Search Movie">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field>
+                    <mat-label>Select Gener</mat-label>
+                    <mat-select multiple [(ngModel)]="selectedOption"
+                        (selectionChange)="generFilterChange($event.value)">
+                        <mat-option *ngFor="let gener of gener_list" [value]="gener">{{gener}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="list-wpr">
+            <div class="list-row list-row-header">
+                <span class="cell"></span>
+                <span class="cell">Title</span>
+                <span class="cell">Show Date</span>
+                <span class="cell">Genre(s)</span>
+                <span class="cell">Rating</span>
+                <span class="cell">Year Release</span>
+                <span class="cell">Metacritic Rating</span>
+                <span class="cell">Runtime</span>
+            </div>
+            <div class="list-row" *ngFor="let movie of movie_data | search:searchText:selectedOption">
+                <span class="cell"><img src="{{movie.poster}}" style="height: 50px;"></span>
+                <span class="cell title-cell">{{movie.title}}</span>
+                <span class="cell">{{movie.showtime | date :'ccc dd MMM YYYY'}}</span>
+                <span class="cell">{{movie.geners}}</span>
+                <span class="cell">{{movie.rating}}</span>
+                <span class="cell">{{movie.release}}</span>
+                <span class="cell">{{movie.metRating}}</span>
+                <span class="cell">{{movie.runtime}}</span>
+            </div>
+            <!-- <div class="seperator"></div> -->
+        </div>
+    </div>
+
+</section>
